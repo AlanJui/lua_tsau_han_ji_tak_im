@@ -8,10 +8,10 @@ package.cpath = project_path .. "lua_modules/lib/lua/5.4/?.so;" .. package.cpath
 package.path = project_path .. "?.lua;" .. package.path
 package.path = project_path .. "?/init.lua;" .. package.path
 
-local socket_url = require("socket.url")
 local http_request = require("http.request")
 local JSON = require("JSON")
 local utils = require("utils")
+local socket_url = require("socket.url")
 
 local url = "http://localhost:8000/api/huan_tshiat_huat/"
 -- local han_ji = arg[1] or "在"
