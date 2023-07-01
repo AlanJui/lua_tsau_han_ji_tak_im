@@ -8,15 +8,18 @@ package.cpath = project_path .. "lua_modules/lib/lua/5.4/?.so;" .. package.cpath
 package.path = project_path .. "?.lua;" .. package.path
 package.path = project_path .. "?/init.lua;" .. package.path
 
+-- local socket_url = require("socket.url")
+-- local JSON = require("JSON")
 local http_request = require("http.request")
-local JSON = require("JSON")
+local JSON = require("dkjson")
+local urlencode = require("urlencode")
 local utils = require("utils")
-local socket_url = require("socket.url")
 
 local url = "http://localhost:8000/api/huan_tshiat_huat/"
 -- local han_ji = arg[1] or "在"
 local han_ji = arg[1] or "離"
-local encoded_han_ji = socket_url.escape(han_ji)
+-- local encoded_han_ji = socket_url.escape(han_ji)
+local encoded_han_ji = urlencode.encode_url(han_ji)
 local query = "?han_ji=" .. encoded_han_ji
 local full_url = url .. query
 
@@ -28,7 +31,12 @@ if headers:get(":status") ~= "200" then
 end
 
 -- 將 JSON 格式的字串轉換成 table 變數
-local body_table = JSON:decode(body)
+-- local body_table = JSON:decode(body)
+local body_table, _, err = JSON.decode(body, 1, nil)
+if err then
+	error(err)
+	return
+end
 -- print(body)
 utils.PrintTable(body_table, 2)
 

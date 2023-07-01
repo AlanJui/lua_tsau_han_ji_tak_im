@@ -1,0 +1,9 @@
+{
+  "workspace.library": [
+    "~/workspace/lua/my_lua01/lua_modules/share/lua/5.4/?.lua",
+    "~/workspace/lua/my_lua01/lua_modules/share/lua/5.4/?/init.lua",
+    "~/workspace/lua/my_lua01/lua_modules/lib/lua/5.4/?.so"
+  ],
+  "runtime.version": "Lua 5.4",
+  "hint.enable": false
+}
